@@ -1,0 +1,49 @@
+Context-Free Grammars (CFG)
+
+<char> ::= "a" | "b" | "c"
+
+<regex> ::= <char>
+          | <regex1> <regex2>
+          | <regex1> "|" <regex2>
+          | "(" <regex> ")"
+
+
+ab|c is a <regex> because
+  - a is a <regex>
+    - a is a <char>
+  - "b|c" is a regex
+    - "b" is a <regex>
+      - "b" is a <char>
+    - "c" is a <regex>
+      - "c" is a <char>
+    -  <regex>"|"<regex> is a regex
+  - <regex><regex> is a regex
+
+* is not a <regex>
+
+ab|c
+- is the same as a(b|c)
+- is the same as (ab)|c
+
+(a)|(c)
+
+NON-AMBIGUOUS VERSION
+=====================
+
+<char> ::= "a" | "b" | "c"
+
+<aregex> ::= <char>
+           | <aregex> "|" <aregex>
+           | "(" <regex> ")"
+
+<regex> ::= <aregex>
+          | <regex> <regex>
+
+abc
+
+a(bc)
+(ab)c
+
+1 - 2 - 3
+(1 - 2) - 3
+1 - (2 - 3)
