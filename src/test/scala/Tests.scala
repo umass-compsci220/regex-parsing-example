@@ -25,7 +25,7 @@ object GenRegex {
     else Gen.oneOf(genRAlt(size), genRSeq(size), genRChar)
   }
 
-  def regex: Gen[Regex] = Gen.sized(size => { println(size); genRegex(size) })
+  def regex: Gen[Regex] = Gen.sized(genRegex)
 }
 
 class TestSuite extends org.scalatest.FunSuite with GeneratorDrivenPropertyChecks {
